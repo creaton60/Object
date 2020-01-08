@@ -1,0 +1,6 @@
+### CUSTOM ###
+.idea/
+.gradle/
+gradle/
+gradlew.bat
+gradlew
