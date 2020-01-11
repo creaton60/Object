@@ -4,10 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
+/**
+ * 관람객 Model
+ */
 @Getter @Setter
 @ToString
-public class Invitation {
-    private LocalDateTime when;
+public class Audience {
+    private Bag bag;
+
+    public Audience(Bag bag) {
+        this.bag = bag;
+    }
 }
