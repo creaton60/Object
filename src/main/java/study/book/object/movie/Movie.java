@@ -3,7 +3,6 @@ package study.book.object.movie;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import study.book.object.movie.policy.DefaultDiscountPolicy;
 import study.book.object.movie.policy.DiscountPolicy;
 
 import java.time.Duration;
@@ -14,16 +13,20 @@ public class Movie {
     private String title;
     private Duration runningTime;
     private Money fee;
-    private DiscountPolicy defaultDiscountPolicy;
+    private DiscountPolicy discountPolicy;
 
-    public Movie(String title, Duration runningTime, Money fee, DiscountPolicy defaultDiscountPolicy) {
+    public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
         this.title = title;
         this.runningTime = runningTime;
         this.fee = fee;
-        this.defaultDiscountPolicy = defaultDiscountPolicy;
+        this.discountPolicy = discountPolicy;
     }
 
     public Money calculateMovieFee(Screening screening) {
-        return fee.minus(defaultDiscountPolicy.calculateDiscountAmount(screening));
+        return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+    }
+
+    public void changeDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
     }
 }

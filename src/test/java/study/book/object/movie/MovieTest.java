@@ -8,6 +8,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.provider.CsvSource;
+import study.book.object.movie.condition.DiscountCondition;
 import study.book.object.movie.condition.PeriodCondition;
 import study.book.object.movie.condition.SequenceCondition;
 import study.book.object.movie.policy.AmountDiscountPolicy;
@@ -43,6 +44,14 @@ class MovieTest {
                                 LocalTime.of(arguments.getInteger(10), arguments.getInteger(11)),
                                 LocalTime.of(arguments.getInteger(12), arguments.getInteger(13))))
         );
+
+        avatar.changeDiscountPolicy(new PercentDiscountPolicy(0.1, new PeriodCondition(DayOfWeek.TUESDAY,
+                        LocalTime.of(arguments.getInteger(4), arguments.getInteger(5)),
+                        LocalTime.of(arguments.getInteger(6), arguments.getInteger(7))),
+                        new SequenceCondition(arguments.getInteger(8)),
+                        new PeriodCondition(DayOfWeek.THURSDAY,
+                                LocalTime.of(arguments.getInteger(9), arguments.getInteger(10)),
+                                LocalTime.of(arguments.getInteger(11), arguments.getInteger(12)))));
 
         log.info("[Movie Info] :: {}", avatar.toString());
     }
