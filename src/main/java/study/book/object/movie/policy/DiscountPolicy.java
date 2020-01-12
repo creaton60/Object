@@ -1,4 +1,8 @@
 package study.book.object.movie.policy;
 
-public class DiscountPolicy {
+import study.book.object.movie.Money;
+import study.book.object.movie.Screening;
+
+public interface DiscountPolicy {
+    Money calculateDiscountAmount(Screening screening);
 }
