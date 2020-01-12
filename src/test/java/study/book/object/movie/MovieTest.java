@@ -10,9 +10,9 @@ import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.provider.CsvSource;
 import study.book.object.movie.condition.PeriodCondition;
 import study.book.object.movie.condition.SequenceCondition;
-import study.book.object.movie.policy.AmountDefaultDiscountPolicy;
-import study.book.object.movie.policy.NoneDefaultDiscountPolicy;
-import study.book.object.movie.policy.PercentDefaultDiscountPolicy;
+import study.book.object.movie.policy.AmountDiscountPolicy;
+import study.book.object.movie.policy.NoneDiscountPolicy;
+import study.book.object.movie.policy.PercentDiscountPolicy;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -33,7 +33,7 @@ class MovieTest {
                 arguments.getString(0),
                 Duration.ofMinutes(arguments.getInteger(1)),
                 Money.wons(arguments.getLong(2)),
-                new AmountDefaultDiscountPolicy(Money.wons(arguments.getLong(3)),
+                new AmountDiscountPolicy(Money.wons(arguments.getLong(3)),
                         new SequenceCondition(arguments.getInteger(4)),
                         new SequenceCondition(arguments.getInteger(5)),
                         new PeriodCondition(DayOfWeek.MONDAY,
@@ -58,7 +58,7 @@ class MovieTest {
                 arguments.getString(0),
                 Duration.ofMinutes(arguments.getLong(1)),
                 Money.wons(arguments.getLong(2)),
-                new PercentDefaultDiscountPolicy(arguments.getDouble(3),
+                new PercentDiscountPolicy(arguments.getDouble(3),
                         new PeriodCondition(DayOfWeek.TUESDAY,
                                 LocalTime.of(arguments.getInteger(4), arguments.getInteger(5)),
                                 LocalTime.of(arguments.getInteger(6), arguments.getInteger(7))),
@@ -82,7 +82,7 @@ class MovieTest {
             arguments.getString(0),
             Duration.ofMinutes(arguments.getLong(1)),
             Money.wons(arguments.getLong(2)),
-            new NoneDefaultDiscountPolicy()
+            new NoneDiscountPolicy()
         );
 
         log.info("[Movie Info] :: {}", starwars.toString());
