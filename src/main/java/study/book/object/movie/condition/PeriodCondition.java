@@ -1,5 +1,6 @@
 package study.book.object.movie.condition;
 
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import study.book.object.movie.Screening;
 
@@ -7,6 +8,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Slf4j
+@ToString
 public class PeriodCondition implements DiscountCondition {
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
