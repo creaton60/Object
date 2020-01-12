@@ -6,10 +6,10 @@ import study.book.object.movie.Screening;
 import study.book.object.movie.condition.DiscountCondition;
 
 @ToString
-public class PercentDiscountPolicy extends DiscountPolicy{
+public class PercentDefaultDiscountPolicy extends DefaultDiscountPolicy {
     private double percent;
 
-    public PercentDiscountPolicy(double percent, DiscountCondition... conditions){
+    public PercentDefaultDiscountPolicy(double percent, DiscountCondition... conditions){
         super(conditions);
         this.percent = percent;
     }
