@@ -1,4 +1,8 @@
 package study.book.object.movie.condition;
 
-public class DiscountCondition {
+import study.book.object.movie.Screening;
+
+public interface DiscountCondition {
+
+    boolean isSatisfiedBy(Screening screening);
 }
