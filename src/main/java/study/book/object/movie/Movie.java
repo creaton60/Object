@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 import study.book.object.movie.policy.DiscountPolicy;
 
-import java.math.BigDecimal;
 import java.time.Duration;
 
 @Getter @Setter
