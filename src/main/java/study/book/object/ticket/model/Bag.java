@@ -21,6 +21,18 @@ public class Bag {
         this(null, amount);
     }
 
+    public Long hold(Ticket ticket) {
+        if(hasInvitation()) {
+            setTicket(ticket);
+
+            return 0L;
+        } else {
+            setTicket(ticket);
+            minusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
+    }
+
     /**
      * Bag 생성시 초대장과 현금보유량으로 생성규정
      *
@@ -32,7 +44,7 @@ public class Bag {
         this.amount = amount;
     }
 
-    public boolean hasInvitation() {
+    private boolean hasInvitation() {
         return invitation != null;
     }
 
@@ -40,7 +52,7 @@ public class Bag {
         return ticket !=null;
     }
 
-    public void minusAmount(Long amount) {
+    private void minusAmount(Long amount) {
         this.amount -= amount;
     }
 
