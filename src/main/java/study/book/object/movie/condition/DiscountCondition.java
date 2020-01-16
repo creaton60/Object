@@ -1,8 +1,20 @@
 package study.book.object.movie.condition;
 
-import study.book.object.movie.Screening;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-public interface DiscountCondition {
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 
-    boolean isSatisfiedBy(Screening screening);
+@Getter @Setter
+@ToString
+public class DiscountCondition {
+    private DiscountConditionType type;
+
+    private int sequence;
+
+    private DayOfWeek dayOfWeek;
+    private LocalTime startTime;
+    private LocalTime endTime;
 }
