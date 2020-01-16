@@ -1,7 +1,13 @@
 package study.book.object.movie;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
+@Getter @Setter
+@ToString
 public class Screening {
     private Movie movie;
     private int sequece;
@@ -13,23 +19,22 @@ public class Screening {
         this.whenScreened = whenScreened;
     }
 
-    public Reservation reserve(Customer customer, int audienceCount) {
-        return new Reservation(customer, this, calculateFee(audienceCount), audienceCount);
-    }
+    public Money calculateFee(int audienceCount) {
+        switch (movie.getMovieType()) {
+            case AMOUNT_DISCOUNT:
+                if(movie.isDiscountable(whenScreened, sequece)) {
+                    return movie.calculateAmountDiscountedFee().times(audienceCount);
+                }
+                break;
+            case PERCENT_DISCOUNT:
+                if(movie.isDiscountable(whenScreened, sequece)) {
+                    return movie.calculatePercentDiscountFee().times(audienceCount);
+                }
+                break;
+            case NONE_DISCOUNT:
+                return movie.calculateNoneDiscountFee().times(audienceCount);
+        }
 
-    public LocalDateTime getStartTime() {
-        return whenScreened;
-    }
-
-    public boolean isSequence(int sequence) {
-        return this.sequece == sequece;
-    }
-
-    public Money getMovieFee() {
-        return movie.getFee();
-    }
-
-    private Money calculateFee(int audienceCount) {
-        return movie.calculateMovieFee(this);
+        return movie.calculateNoneDiscountFee().times(audienceCount);
     }
 }
